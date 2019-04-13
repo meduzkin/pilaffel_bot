@@ -52,7 +52,7 @@ def say_hello_to(last_message):
     first_name = updates["result"][last_update]["message"]["chat"]["first_name"]
     if 'username' in last_message['message']['chat']:
         target_name = username
-    else: 
+    else:
         target_name = first_name
     url = f"{URL}sendMessage?text=Hello {target_name}&chat_id={chat_id}"
     get_url(url)
@@ -62,12 +62,15 @@ def main():
     while True:
         # chat_id = get_chat_id(get_updates())
         last_message = get_updates()
-        msg_text = last_message.get('text')
+        num_updates = len(updates["result"])
+        last_update = num_updates - 1
+        msg_text = last_message
 
-        if 'Hello' in msg_text:
-            say_hello_to(last_message)
-        else:
-            send_message(last_message)
+        print(msg_text)
+        # if last_message['message'] == 'Hello':
+        #     say_hello_to(last_message)
+        # else:
+        #     send_message(last_message)
 
 # def main():
 #     last_textchat = (None, None)
