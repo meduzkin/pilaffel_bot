@@ -1,0 +1,12 @@
+whilie {
+    get_new_message = ""
+
+    if get_new_message.contain = xxx:
+        fuck_you(message)
+    elseif get_new_message.contain = yyy:
+        lick_you(message)
+    elseif get_new_message.contain = zzz:
+        suck_if(message)
+    else:
+       die!
+}
