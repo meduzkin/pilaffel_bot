@@ -31,8 +31,13 @@ def get_target_name(updates):
     last_update = num_updates - 1
     username = updates["result"][last_update]["message"]["chat"]["username"]
     first_name = updates["result"][last_update]["message"]["chat"]["first_name"]
-    return (username)
-    return (first_name)
+    if first_name in last_update:
+        target_name = username
+    else:
+        target_name = first_name
+    # return (username)
+    # return (first_name)
+    return(target_name)
 
 def get_chat_id(updates):
     num_updates = len(updates["result"])
@@ -58,30 +63,19 @@ def say_hello_to(last_message):
     get_url(url)
 
 def main():
-    # last_message = (None)
     while True:
-        # chat_id = get_chat_id(get_updates())
-        last_message = get_updates()
-        num_updates = len(updates["result"])
-        last_update = num_updates - 1
-        msg_text = last_message
-
-        print(msg_text)
-        # if last_message['message'] == 'Hello':
-        #     say_hello_to(last_message)
+        updates = get_updates()
+        last_message = get_last_text(updates)
+        target_name = get_target_name(updates)
+        chat_id = get_chat_id(updates)
+        # if 'Hello' in last_message:
+        #     say_hello_to(taget_name)
         # else:
-        #     send_message(last_message)
+        #     send_message(updates)
+        
+        print(last_message)
+        print(target_name)
+        
 
-# def main():
-#     last_textchat = (None, None)
-#     while True:
-#         text, chat, first_name  = get_target_name(get_updates())
-#         #username,
-#         if (text, chat, first_name) != last_textchat:
-#             #username,
-#             say_hello_to(first_name, chat)
-#             # send_message(text, chat)
-#             last_textchat = (first_name, chat)
-#         time.sleep(0.5)
 if __name__ == '__main__':
     main()
